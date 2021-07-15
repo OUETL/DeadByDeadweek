@@ -1,0 +1,59 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl FrontColor
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl Color_C08
+Ka 0.000000 0.000000 0.000000
+Kd 0.400000 0.200000 0.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl Color_A07
+Ka 0.000000 0.000000 0.000000
+Kd 0.600000 0.000000 0.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl _2
+Ka 0.000000 0.000000 0.000000
+Kd 0.392157 0.584314 0.929412
+Ks 0.330000 0.330000 0.330000
+d 0.250000
+
+newmtl Chris_Hair
+Ka 0.000000 0.000000 0.000000
+Kd 0.278431 0.298039 0.290196
+Ks 0.330000 0.330000 0.330000
+
+newmtl Aluminum
+Ka 0.000000 0.000000 0.000000
+Kd 0.701961 0.701961 0.701961
+Ks 0.330000 0.330000 0.330000
+map_Kd Edge Floor plan _birdseye/Aluminum.jpg
+
+newmtl Walnut_Long
+Ka 0.000000 0.000000 0.000000
+Kd 0.501961 0.368627 0.207843
+Ks 0.330000 0.330000 0.330000
+map_Kd Edge Floor plan _birdseye/Walnut_Long.jpg
+
+newmtl Steel_Brushed_5cm
+Ka 0.000000 0.000000 0.000000
+Kd 0.556863 0.556863 0.556863
+Ks 0.330000 0.330000 0.330000
+map_Kd Edge Floor plan _birdseye/Steel_Brushed_5cm.jpg
+
+newmtl Walnut_Vertical
+Ka 0.000000 0.000000 0.000000
+Kd 0.501961 0.368627 0.207843
+Ks 0.330000 0.330000 0.330000
+map_Kd Edge Floor plan _birdseye/Walnut_Vertical.jpg
+
+newmtl _LightGray_
+Ka 0.000000 0.000000 0.000000
+Kd 0.662745 0.662745 0.662745
+Ks 0.330000 0.330000 0.330000
+

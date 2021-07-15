@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Geoff.tscn" type="PackedScene" id=1]
+[ext_resource path="res://RasmusRasmus.tscn" type="PackedScene" id=2]
+[ext_resource path="res://EdgeRoom.tscn" type="PackedScene" id=3]
+
+[node name="Main" type="Spatial"]
+
+[node name="Geoff" parent="." instance=ExtResource( 1 )]
+position = Vector2( 168.905, 471.24 )
+scale = Vector2( 0.1, 0.1 )
+
+[node name="RasmusRasmus" parent="." instance=ExtResource( 2 )]
+position = Vector2( 166.606, 477.666 )
+scale = Vector2( 0.1, 0.1 )
+
+[node name="EdgeRoom" parent="." instance=ExtResource( 3 )]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 301.093, 0 )
+current = true
+far = 1000.0
