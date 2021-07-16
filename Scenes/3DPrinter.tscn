@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/Sprites/toolhead.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/gantry-1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/printerFrame.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/gantry-2.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/3DPrinter.gd" type="Script" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 140.693, 1544.02 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 1064.54, 69.2517 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 276.304, 323.523 )
+
+[node name="3DPrinter" type="Node2D"]
+position = Vector2( 529.802, 538.782 )
+scale = Vector2( 0.24, 0.24 )
+script = ExtResource( 5 )
+
+[node name="printerFrame" type="StaticBody2D" parent="."]
+
+[node name="frameSprite" type="AnimatedSprite" parent="printerFrame"]
+frames = SubResource( 1 )
+playing = true
+
+[node name="leftCollisionShape2D" type="CollisionShape2D" parent="printerFrame"]
+position = Vector2( 1729.04, 339.028 )
+shape = SubResource( 2 )
+
+[node name="rightCollisionShape2D2" type="CollisionShape2D" parent="printerFrame"]
+position = Vector2( -1686.67, 347.504 )
+shape = SubResource( 2 )
+
+[node name="gantry" type="KinematicBody2D" parent="."]
+
+[node name="gantrySprite" type="AnimatedSprite" parent="gantry"]
+frames = SubResource( 3 )
+frame = 1
+
+[node name="bottomCollisionShape2D" type="CollisionShape2D" parent="gantry"]
+position = Vector2( -101.708, -364.455 )
+shape = SubResource( 4 )
+disabled = true
+
+[node name="topCollisionShape2D2" type="CollisionShape2D" parent="gantry"]
+position = Vector2( -144.087, -720.435 )
+shape = SubResource( 4 )
+disabled = true
+
+[node name="toolhead" type="KinematicBody2D" parent="gantry"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="gantry/toolhead"]
+frames = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gantry/toolhead"]
+position = Vector2( -966.23, -432.261 )
+shape = SubResource( 6 )
