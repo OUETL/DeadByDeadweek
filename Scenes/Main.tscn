@@ -9,6 +9,7 @@
 [node name="Geoff" parent="." instance=ExtResource( 1 )]
 position = Vector2( 168.905, 471.24 )
 scale = Vector2( 0.1, 0.1 )
+speed = 400
 
 [node name="RasmusRasmus" parent="." instance=ExtResource( 2 )]
 position = Vector2( 166.606, 477.666 )

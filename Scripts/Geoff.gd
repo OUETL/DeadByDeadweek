@@ -3,16 +3,17 @@
 extends Area2D
 
 export var speed = 400 # speed of character
+onready var lifeTimer = $lifeTimer
+onready var lifestatusSprite = $LifeBar.texture_progress
+onready var lifestatusFrames = preload("res://Assets/Resources/lifeprogressanimation.tres")
 
+var currentLife = 23
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-
-
-func _process(delta):
+	lifestatusSprite.set_current_frame(currentLife) 
+	lifeTimer.start()
+	
+func _process(delta):	
 	var velocity = Vector2() # player movement vector
 	
 	# determining direction that the player should move, storing it in var velocity
@@ -39,4 +40,8 @@ func _process(delta):
 		$AnimatedSprite.flip_h = velocity.x < 0 # boolean input, so we flip if velocity.x is less than 0 (ie moving left) only, and don't flip when moving to the right
 	if velocity.x == 0 && velocity.y == 0:
 		$AnimatedSprite.animation = "idle"
-		
+	#update health variable
+	currentLife = lifeTimer.get_time_left()
+	#set frame as currentLife int
+	lifestatusSprite.set_current_frame(currentLife)
+	

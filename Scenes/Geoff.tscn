@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://import/Geoff Charlie-2.png.png" type="Texture" id=1]
 [ext_resource path="res://import/Geoff Charlie-1.png.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Geoff.gd" type="Script" id=3]
-
+[ext_resource path="res://Assets/Resources/lifeprogressanimation.tres" type="Texture" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -36,3 +36,22 @@ playing = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -33.9792, 52.8569 )
 shape = SubResource( 2 )
+
+[node name="lifeTimer" type="Timer" parent="."]
+wait_time = 23.0
+one_shot = true
+
+[node name="LifeBar" type="TextureProgress" parent="."]
+margin_left = -271.223
+margin_top = -703.483
+margin_right = -207.223
+margin_bottom = -639.483
+rect_scale = Vector2( 7.16, 7.16 )
+max_value = 24.0
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 4 )
+tint_under = Color( 0.211765, 0, 0.494118, 1 )
+tint_progress = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
