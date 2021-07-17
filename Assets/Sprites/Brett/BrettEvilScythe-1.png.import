@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/toolhead.png-82ef0b36cc2c7ee871458a2ec9c0c571.stex"
+path="res://.import/BrettEvilScythe-1.png-830b3de3d8121470c0067a1349b911d7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/toolhead.png"
-dest_files=[ "res://.import/toolhead.png-82ef0b36cc2c7ee871458a2ec9c0c571.stex" ]
+source_file="res://Assets/Sprites/Brett/BrettEvilScythe-1.png"
+dest_files=[ "res://.import/BrettEvilScythe-1.png-830b3de3d8121470c0067a1349b911d7.stex" ]
 
 [params]
 
