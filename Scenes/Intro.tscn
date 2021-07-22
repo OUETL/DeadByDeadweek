@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Fonts/8-bit Arcade In.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Fonts/NiceNightie.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 35
+font_data = ExtResource( 2 )
+
+[node name="Intro" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1034.0
+margin_bottom = 1030.0
+color = Color( 0.270588, 0.12549, 0.247059, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="8-BitArcade" type="TextEdit" parent="."]
+margin_left = 323.634
+margin_top = 765.635
+margin_right = 523.634
+margin_bottom = 785.635
+rect_scale = Vector2( 3.43166, 2.71363 )
+custom_fonts/font = SubResource( 1 )
+text = "Press Any Key"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NiceNightie" type="TextEdit" parent="."]
+margin_left = 61.4305
+margin_top = 50.9424
+margin_right = 311.431
+margin_bottom = 100.942
+rect_scale = Vector2( 3.43166, 2.71363 )
+custom_fonts/font = SubResource( 2 )
+text = "Dead by Deadweek"
+__meta__ = {
+"_edit_use_anchors_": false
+}
