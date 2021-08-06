@@ -15,7 +15,7 @@ geometry/collision_mask = 4294967295
 [node name="Navigation" type="Navigation" parent="."]
 
 [node name="Brett" parent="Navigation" instance=ExtResource( 4 )]
-transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, -132.333, 20.2102, -97.0241 )
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, -132.333, 19.5384, -97.0241 )
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
 navmesh = SubResource( 1 )
