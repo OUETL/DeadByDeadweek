@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Sprites/JaneDough/Jane Dough-2.png.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/JaneDough/Jane Dough-1.png.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/JaneDoe.gd" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "walking",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="CapsuleMesh" id=2]
+
+[sub_resource type="CubeMesh" id=4]
+
+[node name="JaneDough" type="KinematicBody"]
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+frames = SubResource( 3 )
+animation = "idle"
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+visible = false
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="LookPivot" type="Spatial" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="LookPivot"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, -1 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="Pivot" type="Spatial" parent="."]
+
+[node name="Listener" type="Listener" parent="."]
+current = true

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/TheIntensity.mp3-87327e76a76ad320ad8f4f429e651bcc.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/TheIntensity.mp3"
+dest_files=[ "res://.import/TheIntensity.mp3-87327e76a76ad320ad8f4f429e651bcc.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
