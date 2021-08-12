@@ -4,7 +4,6 @@
 [ext_resource path="res://import/Rasmus Rasmus-2.png.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/RasmusRasmus.gd" type="Script" id=3]
 
-
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
@@ -30,7 +29,6 @@ script = ExtResource( 3 )
 position = Vector2( 1, 0 )
 frames = SubResource( 1 )
 animation = "walk"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
