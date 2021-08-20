@@ -28,6 +28,7 @@ autoplay = true
 
 [node name="CreepyTheme" type="AudioStreamPlayer" parent="." index="2"]
 stream = ExtResource( 2 )
+volume_db = 3.0
 
 [node name="DoorwayMusicChange" type="StaticBody" parent="." index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -61.2063, -18.3185, 67.9175 )

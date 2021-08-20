@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Fonts/8-bit Arcade In.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Fonts/NiceNightie.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Video/introBGVid.ogv" type="VideoStream" id=3]
+[ext_resource path="res://Scenes/Intro.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Music/Creepy Theme.mp3" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
@@ -13,6 +16,7 @@ font_data = ExtResource( 2 )
 [node name="Intro" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -25,6 +29,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="VideoPlayer" type="VideoPlayer" parent="ColorRect"]
+margin_right = 1028.0
+margin_bottom = 1028.0
+stream = ExtResource( 3 )
+autoplay = true
+
 [node name="8-BitArcade" type="TextEdit" parent="."]
 margin_left = 323.634
 margin_top = 765.635
@@ -32,7 +42,7 @@ margin_right = 523.634
 margin_bottom = 785.635
 rect_scale = Vector2( 3.43166, 2.71363 )
 custom_fonts/font = SubResource( 1 )
-text = "Press Any Key"
+text = "Press Enter"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -48,3 +58,8 @@ text = "Dead by Deadweek"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = 3.0
+autoplay = true
