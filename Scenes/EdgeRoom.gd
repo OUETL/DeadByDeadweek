@@ -20,12 +20,8 @@ func _on_character_body_enter(body):
 		print("Ouch!")
 	
 func _trackChange():
-	if chillMusic.stream_paused:
-		chillMusic.stop()
-		creepyMusic.play()
-	elif not chillMusic.stream_paused:
-		creepyMusic.stop()
-		chillMusic.play()
+	chillMusic.stop()
+	creepyMusic.play()
 
 func _on_EdgeRoom_trackchangeCollide_onEnter():
 	_trackChange()

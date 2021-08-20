@@ -3,31 +3,19 @@ extends KinematicBody
 var speed = 100
 var acceleration = 20
 
-var mouse_sensitivity = 0.1
+onready var edgeRoom = $'../Navigation/NavigationMeshInstance/EdgeRoom'
+onready var edgeRoomArea = $'../Navigation/NavigationMeshInstance/EdgeRoom/Area'
 
 var direction = Vector3()
 var velocity = Vector3()
 
-onready var pivot = $Pivot
-onready var gun_pivot = $LookPivot
-
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	pass # Replace with function body.
+	edgeRoomArea.connect('body_entered', self, '_on_entered_music_change')
 
-#func _input(event):
-#
-#	if Input.is_action_just_pressed("ui_cancel"):
-#		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-#
-#	if event is InputEventMouseMotion:
-#		rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
-#
-#		pivot.rotate_x(deg2rad(-event.relative.y*mouse_sensitivity))
-#		pivot.rotation.x = clamp(pivot.rotation.x, deg2rad(-90), deg2rad(90))
-#
-#		gun_pivot.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
-#		gun_pivot.rotation.x = clamp(gun_pivot.rotation.x, deg2rad(-45), deg2rad(45))
+func _on_entered_music_change(body):
+	print('On entered triggered from player!')
+	edgeRoom._trackChange()
 
 func _process(delta):
 	direction = Vector3()
