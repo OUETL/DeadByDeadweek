@@ -3,19 +3,12 @@ extends KinematicBody
 var speed = 100
 var acceleration = 20
 
-onready var edgeRoom = $'../Navigation/NavigationMeshInstance/EdgeRoom'
-onready var edgeRoomDoorwayArea = $'../Navigation/NavigationMeshInstance/EdgeRoom/DoorwayArea'
-
 var direction = Vector3()
 var velocity = Vector3()
 
 func _ready():
 	# Hides mouse cursor
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-	# Tell edgeRoomDoorway to connect any body_entered signals it might
-	# generate to the edgeRoom._on_player_entry() method
-	edgeRoomDoorwayArea.connect('body_entered', edgeRoom, '_on_player_entry')
 
 func _process(delta):
 	direction = Vector3()
