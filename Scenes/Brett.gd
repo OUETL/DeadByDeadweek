@@ -1,10 +1,10 @@
 extends KinematicBody
 
 var path = []
-var path_node = 0
+var path_node_index = 0
 var player = null
 
-# Allow change sin the editor for convienence
+# Allow to be changed in the editor for convienence
 export var speed = 90
 export var player_path = "../../JaneDough"
 
@@ -16,16 +16,16 @@ func _ready():
 		print("Problem getting player object from path '%s'" % player_path)
 
 func _physics_process(delta):
-	if path_node < path.size():
-		var direction = (path[path_node] - global_transform.origin)
+	if path_node_index < path.size():
+		var direction = (path[path_node_index] - global_transform.origin)
 		if direction.length() < 1:
-			path_node += 1
+			path_node_index += 1
 		else:
 			move_and_slide(direction.normalized() * speed, Vector3.UP)
 
 func set_destination(target_pos):
 	path = nav.get_simple_path(global_transform.origin, target_pos)
-	path_node = 0
+	path_node_index = 0
 
 func _on_Timer_timeout():
 	set_destination(player.global_transform.origin)

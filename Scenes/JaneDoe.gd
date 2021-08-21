@@ -1,7 +1,7 @@
 extends KinematicBody
 
-var speed = 100
-var acceleration = 20
+export var speed = 100
+export var acceleration = 20
 
 var direction = Vector3()
 var velocity = Vector3()

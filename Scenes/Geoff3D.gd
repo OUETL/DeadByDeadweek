@@ -1,15 +1,10 @@
 extends KinematicBody
 
-var speed = 100
-var acceleration = 20
-
-var mouse_sensitivity = 0.1
+export var speed = 100
+export var acceleration = 20
 
 var direction = Vector3()
 var velocity = Vector3()
-
-onready var pivot = $Pivot
-onready var gun_pivot = $LookPivot
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
