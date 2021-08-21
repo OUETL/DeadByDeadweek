@@ -2,26 +2,19 @@ extends Spatial
 
 signal trackchangeCollide_onEnter
 
+var firstEntry = true
+
 onready var chillMusic = $ChillTheme
 onready var creepyMusic = $CreepyTheme
-onready var trackchangeBody = $DoorwayMusicChange
-onready var trackchangeCollide = $DoorwayMusicChange/CollisionShape
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 	
-func _physics_process(delta):
-	pass
-	
-func _on_character_body_enter(body):
-	print("Collision")
-	if (body.get_name() == "Player"):
-		print("Ouch!")
-	
-func _trackChange():
+func _track_change():
 	chillMusic.stop()
 	creepyMusic.play()
 
-func _on_EdgeRoom_trackchangeCollide_onEnter():
-	_trackChange()
+func _on_player_entry(body):	
+	if (firstEntry == true) and (body.name == "JaneDough"):
+		firstEntry = false
+		_track_change()
+		print("Changing track")
+
+	print("Collision: ", body, body.name)
