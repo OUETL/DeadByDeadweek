@@ -1,7 +1,5 @@
 extends Spatial
 
-signal trackchangeCollide_onEnter
-
 var firstEntry = true
 
 onready var chillMusic = $ChillTheme
@@ -17,4 +15,4 @@ func _on_player_entry(body):
 		_track_change()
 		print("Changing track")
 
-	print("Collision: ", body, body.name)
+#	print("Collision: ", body, body.name)
