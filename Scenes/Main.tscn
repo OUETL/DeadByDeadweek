@@ -1,12 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Scenes/ActiveZones.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Music/Chill Theme.mp3" type="AudioStream" id=2]
 [ext_resource path="res://Scenes/EdgeRoom.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Brett.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/JaneDoe.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Music/Creepy Theme.mp3" type="AudioStream" id=6]
-[ext_resource path="res://Scenes/Music.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Main.gd" type="Script" id=8]
 
 [sub_resource type="BoxShape" id=3]
 
@@ -37,9 +36,9 @@ fog_depth_enabled = false
 fog_transmit_enabled = true
 
 [node name="Main" type="Spatial"]
+script = ExtResource( 8 )
 
 [node name="Music" type="Node" parent="."]
-script = ExtResource( 7 )
 
 [node name="ChillTheme" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource( 2 )
@@ -50,7 +49,6 @@ stream = ExtResource( 6 )
 volume_db = 3.0
 
 [node name="ActiveZones" type="Node" parent="."]
-script = ExtResource( 1 )
 
 [node name="EdgeDoorway" type="Area" parent="ActiveZones"]
 transform = Transform( 20, 0, 0, 0, 20, 0, 0, 0, 5, -33, 20, 140 )
