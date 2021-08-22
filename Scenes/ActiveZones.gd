@@ -3,27 +3,16 @@ extends Node
 onready var music = $"../Music"
 onready var text = $"../UICanvasLayer/RichTextLabel"
 
-# Map zone name -> zone metadata (currently just whether it's the first time the
-# zone was entered
-var zones = {
-	'EdgeDoorway': true,
-	'Test': true,
-}
+var firstEntryIntoEdge = true
 	
 func _ready():
-	#
-	# For each of the named zones in 'zones', find the area object and
-	# hook the 'body_entered' / 'body_exited' signals up to our '_on_entry'
-	# and '_on_exit' methods.
-	#
-	for name in zones:
-		# Can't find area?
-		var area = get_node(name)
-		if area == null:
-			print('Unable to find zone object called "%s"' % name)
+	
+	for area in get_children():
+		# Ignore if not an Area object.
+		if !(area is Area):
 			continue
-		
-		# Hook up signals
+			
+		print('Hooking up entry/exit signals for area "%s"' % area.name)
 		area.connect('body_entered', self, '_on_entry', [area])
 		area.connect('body_exited', self, '_on_exit', [area])
 
@@ -35,9 +24,9 @@ func _on_entry(body, area):
 
 	# Player entered the Edge room? Only trigger first time!
 	if (body.name == 'JaneDough') and (area.name == 'EdgeDoorway'):
-		if zones[area.name] == true:
-			zones[area.name] = false
-			music._track_change()
+		if firstEntryIntoEdge == true:
+			firstEntryIntoEdge = false
+			music._play_track('CreepyTheme')
 	
 	# Player entered test zone? Change text.
 	if (body.name == 'JaneDough') and (area.name == 'Test'):
