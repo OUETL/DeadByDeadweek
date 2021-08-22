@@ -5,9 +5,9 @@ export var zones_path = "ActiveZones"
 export var text_path = "UICanvasLayer/RichTextLabel"
 
 # Maps track name => AudioStreamPlayer object for that track.
-var track_name_to_player = {}
+var track_name_to_audio_player = {}
 
-# Remeber whether we've entered the Edge area before!
+# Remember whether we've entered the Edge area before!
 var firstEntryIntoEdge = true
 
 # Status update text
@@ -32,7 +32,7 @@ func _ready():
 		for track in music.get_children():
 			if !(track is AudioStreamPlayer): continue
 			print('Adding track "%s"' % track.name)
-			track_name_to_player[track.name] = track
+			track_name_to_audio_player[track.name] = track
 	
 	#
 	# Look at child nodes of active zones node, set up signals
@@ -52,16 +52,19 @@ func _ready():
 #
 func _play_track(track_name):
 	# Stop any existing music
-	for track_name in track_name_to_player:
-		track_name_to_player[track_name].stop()
+	for track_name in track_name_to_audio_player:
+		track_name_to_audio_player[track_name].stop()
 	
 	# Try to start new music track
-	if track_name in track_name_to_player:
+	if track_name in track_name_to_audio_player:
 		print('Changing music track to "%s"' % track_name)
-		track_name_to_player[track_name].play()
+		track_name_to_audio_player[track_name].play()
 	else:
 		print('Unknown music track "%s"' % track_name)
 
+#
+# Update the status text
+#
 func _update_text(new_text):
 	if text == null: return
 	text.text = new_text
