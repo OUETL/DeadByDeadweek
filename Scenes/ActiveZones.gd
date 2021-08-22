@@ -1,11 +1,13 @@
 extends Node
 
 onready var music = $"../Music"
+onready var text = $"../UICanvasLayer/RichTextLabel"
 
 # Map zone name -> zone metadata (currently just whether it's the first time the
 # zone was entered
 var zones = {
 	'EdgeDoorway': true,
+	'Test': true,
 }
 	
 func _ready():
@@ -37,5 +39,13 @@ func _on_entry(body, area):
 			zones[area.name] = false
 			music._track_change()
 	
+	# Player entered test zone? Change text.
+	if (body.name == 'JaneDough') and (area.name == 'Test'):
+		text.text = 'Inside!'
+	
 func _on_exit(body, area):
 	print('out: ' + body.name + ' ' + area.name)
+
+	# Player exited test zone? Change text.
+	if (body.name == 'JaneDough') and (area.name == 'Test'):
+		text.text = ''
