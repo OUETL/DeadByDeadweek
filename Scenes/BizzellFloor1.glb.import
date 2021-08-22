@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/template.9.glb-b286aa099699fd3f7b2e7cc9b9e8c8c8.scn"
+path="res://.import/BizzellFloor1.glb-b799b11fb10bd94e6b8cea8805fb9356.scn"
 
 [deps]
 
-source_file="res://Scenes/template.9.glb"
-dest_files=[ "res://.import/template.9.glb-b286aa099699fd3f7b2e7cc9b9e8c8c8.scn" ]
+source_file="res://Scenes/BizzellFloor1.glb"
+dest_files=[ "res://.import/BizzellFloor1.glb-b799b11fb10bd94e6b8cea8805fb9356.scn" ]
 
 [params]
 

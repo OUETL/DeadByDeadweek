@@ -8,7 +8,8 @@ var velocity = Vector3()
 
 func _ready():
 	# Hides mouse cursor
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	pass
 
 func _process(delta):
 	direction = Vector3()
