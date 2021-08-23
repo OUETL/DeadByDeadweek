@@ -120,7 +120,11 @@ func on_area_exit(body, area):
 func key_down(event):
 	# Check if specific key pressed in a region. Change to user-specified
 	# action rather than hardcoded scancode!
-	if (event.scancode == KEY_Q) and (player_in_area['Test'] == true):
+	#if (event.scancode == KEY_Q) and (player_in_area['Test'] == true):
+	#	print('Triggered!')
+	
+	# Check if specific action key pressed in a region.
+	if (Input.is_action_pressed("ui_accept")) and (player_in_area['Test'] == true):
 		print('Triggered!')
 
 func key_up(event):
