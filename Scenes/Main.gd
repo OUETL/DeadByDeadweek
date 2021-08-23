@@ -52,24 +52,24 @@ func _ready():
 			if !(area is Area): continue
 			player_in_area[area.name] = false
 			print('Hooking up entry/exit signals for area "%s"' % area.name)
-			area.connect('body_entered', self, '_on_area_entry', [area])
-			area.connect('body_exited', self, '_on_area_exit', [area])
+			area.connect('body_entered', self, 'on_area_entry', [area])
+			area.connect('body_exited', self, 'on_area_exit', [area])
 
 func _input(event):
 	if event is InputEventKey:
 		# Mimic keyup/keydown; echo == a repeated event when key held down
 		if event.is_echo() == false:
 			if event.pressed == true:
-				_key_down(event)
+				key_down(event)
 			else:
-				_key_up(event)
+				key_up(event)
 
 #
 # Additional methods follow
 #
 
 # Change the music track; also stops any track(s) that may already be playing
-func _play_track(track_name):
+func play_track(track_name):
 	# Stop any existing music
 	for track_name in track_name_to_audio_player:
 		track_name_to_audio_player[track_name].stop()
@@ -82,12 +82,12 @@ func _play_track(track_name):
 		print('Unknown music "%s"' % track_name)
 
 # Update the status text
-func _update_text(new_text):
+func update_text(new_text):
 	if text == null: return
 	text.text = new_text
 
 # Called when something ('body') enters one of the specified areas ('area').
-func _on_area_entry(body, area):
+func on_area_entry(body, area):
 	print('in: ' + body.name + ' ' + area.name)
 
 	# Player-based actions
@@ -98,14 +98,14 @@ func _on_area_entry(body, area):
 		if area.name == 'EdgeDoorway':
 			if firstEntryIntoEdge == true:
 				firstEntryIntoEdge = false
-				_play_track('CreepyTheme')
+				play_track('CreepyTheme')
 
 		# Player entered test zone? Change text.
 		if area.name == 'Test':
-			_update_text('Press "a" to activate!')
+			update_text('Press "a" to activate!')
 
 # Called when something ('body') exits one of the specified areas ('area').
-func _on_area_exit(body, area):
+func on_area_exit(body, area):
 	print('out: ' + body.name + ' ' + area.name)
 
 	# Player-based actions
@@ -114,14 +114,14 @@ func _on_area_exit(body, area):
 
 		# Player exited test zone? Clear text.
 		if area.name == 'Test':
-			_update_text('')
+			update_text('')
 
 # Mimic keydown / keyup events (apparently not provided by Godot?)
-func _key_down(event):
+func key_down(event):
 	# Check if specific key pressed in a region. Change to user-specified
 	# action rather than hardcoded scancode!
 	if (event.scancode == KEY_Q) and (player_in_area['Test'] == true):
 		print('Triggered!')
 
-func _key_up(event):
+func key_up(event):
 	pass

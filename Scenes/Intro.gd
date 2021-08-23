@@ -5,7 +5,7 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_pressed("ui_accept"):
-		_startGame()
+		startGame()
 
-func _startGame():
+func startGame():
 	get_tree().change_scene("res://Scenes/Main.tscn")

@@ -24,7 +24,8 @@ func _process(delta):
 		direction -= transform.basis.z
 	elif Input.is_action_pressed("ui_down"):
 		direction += transform.basis.z
-	elif Input.is_action_pressed("ui_left"):
+	
+	if Input.is_action_pressed("ui_left"):
 		direction -= transform.basis.x
 	elif Input.is_action_pressed("ui_right"):
 		direction += transform.basis.x
