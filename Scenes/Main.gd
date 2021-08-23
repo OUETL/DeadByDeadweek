@@ -10,6 +10,9 @@ export var text_path = "UICanvasLayer/RichTextLabel"
 # Maps track name => AudioStreamPlayer object for that track.
 var track_name_to_audio_player = {}
 
+# Maps area name -> true (is inside area) or false (if outside)
+var player_in_area = {}
+
 # Remember whether we've entered the Edge area before!
 var firstEntryIntoEdge = true
 
@@ -47,6 +50,7 @@ func _ready():
 	else:
 		for area in zones.get_children():
 			if !(area is Area): continue
+			player_in_area[area.name] = false
 			print('Hooking up entry/exit signals for area "%s"' % area.name)
 			area.connect('body_entered', self, '_on_entry', [area])
 			area.connect('body_exited', self, '_on_exit', [area])
@@ -84,6 +88,8 @@ func _on_entry(body, area):
 	#
 	if body.name == 'JaneDough':
 		
+		player_in_area[area.name] = true
+		
 		# Player entered the Edge room? Only trigger first time!
 		if area.name == 'EdgeDoorway':
 			if firstEntryIntoEdge == true:
@@ -92,7 +98,7 @@ func _on_entry(body, area):
 
 		# Player entered test zone? Change text.
 		if area.name == 'Test':
-			_update_text('Inside!')
+			_update_text('Press "a" to activate!')
 
 #
 # Called when something ('body') exits one of the specified areas ('area').
@@ -105,6 +111,22 @@ func _on_exit(body, area):
 	#
 	if body.name == 'JaneDough':
 
+		player_in_area[area.name] = false
+
 		# Player exited test zone? Change text.
 		if area.name == 'Test':
 			_update_text('')
+
+var key_down = false
+
+func _input(event):
+	if event is InputEventKey:
+		
+		# Check for appropriate key pressed in test region. Chaneg this for
+		# a user-specified action rather than a hardcoded scancode.
+		if (event.scancode == KEY_Q) and (player_in_area['Test'] == true):
+			if event.pressed == false:
+				key_down = false
+			elif key_down == false:
+				key_down = true
+				print('Triggered!')
