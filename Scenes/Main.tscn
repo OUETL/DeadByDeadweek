@@ -68,14 +68,16 @@ material/0 = SubResource( 3 )
 
 [node name="Navigation" type="Navigation" parent="."]
 
-[node name="Brett" parent="Navigation" instance=ExtResource( 4 )]
-transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, -132.333, 19.5384, -97.0241 )
-
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
 navmesh = SubResource( 4 )
 
 [node name="EdgeRoom" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2464, -5.25023, 9.15276 )
+
+[node name="Brett" parent="." instance=ExtResource( 4 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, -132.333, 19.5384, -97.0241 )
+player_path = "../JaneDough"
+navigation_path = "../Navigation"
 
 [node name="JaneDough" parent="." instance=ExtResource( 5 )]
 transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 146.234, 0, 200.302 )
