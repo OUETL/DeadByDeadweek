@@ -11,9 +11,6 @@ var track_name_to_audio_player = {}
 # Maps area name -> true (is inside area) or false (if outside)
 var player_in_area = {}
 
-# Maps key code to key latch; used to mimic keyup/keydown events
-var key_latch_map = {}
-
 # Remember whether we've entered the Edge area before!
 var firstEntryIntoEdge = true
 
@@ -52,6 +49,17 @@ func _ready():
 			area.connect('body_entered', self, '_on_entry', [area])
 			area.connect('body_exited', self, '_on_exit', [area])
 
+func _input(event):
+	if event is InputEventKey:
+		# Mimic keyup/keydown; echo == repeated signal when key held down
+		if event.is_echo() == false:
+			if event.pressed == true:
+				_key_down(event)
+			else:
+				_key_up(event)
+
+# Additional methods follow
+
 # Change the music track; also stops any track(s) that may already be playing
 func _play_track(track_name):
 	# Stop any existing music
@@ -64,22 +72,6 @@ func _play_track(track_name):
 		track_name_to_audio_player[track_name].play()
 	else:
 		print('Unknown music "%s"' % track_name)
-
-func _input(event):
-	if event is InputEventKey:
-		# Mimic keydown / keyup events
-		var state = event.pressed
-		var code = event.scancode		
-		var result = key_latch_map.get(code)
-		
-		if (result == null) or (result != state):
-			if state == true:
-				_key_down(event)
-			else:
-				_key_up(event)
-			key_latch_map[code] = state
-
-# Additional methods follow
 
 # Update the status text
 func _update_text(new_text):
