@@ -1,5 +1,8 @@
 extends Spatial
 
+#
+# Expose these to the editor GUI for convenience
+#
 export var music_path = "Music"
 export var zones_path = "ActiveZones"
 export var text_path = "UICanvasLayer/RichTextLabel"
@@ -13,7 +16,6 @@ var firstEntryIntoEdge = true
 # Status update text
 var text
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	#
 	# Try to find the text node
@@ -23,7 +25,8 @@ func _ready():
 		print('Unable to find text node at "%s"' + text_path)
 	
 	#
-	# Look at child nodes of music node, set up track_name_to_player map
+	# Look at child nodes of music node, set up track_name_to_player map for
+	# any children of type AudioStreamPlayer
 	#
 	var music = get_node(music_path)
 	if music == null:
@@ -35,7 +38,8 @@ func _ready():
 			track_name_to_audio_player[track.name] = track
 	
 	#
-	# Look at child nodes of active zones node, set up signals
+	# Look at child nodes of active zones node, connect signals for any
+	# children of type Area
 	#
 	var zones = get_node(zones_path)
 	if zones == null:
@@ -57,10 +61,10 @@ func _play_track(track_name):
 	
 	# Try to start new music track
 	if track_name in track_name_to_audio_player:
-		print('Changing music track to "%s"' % track_name)
+		print('Changing music to "%s"' % track_name)
 		track_name_to_audio_player[track_name].play()
 	else:
-		print('Unknown music track "%s"' % track_name)
+		print('Unknown music "%s"' % track_name)
 
 #
 # Update the status text
@@ -68,29 +72,39 @@ func _play_track(track_name):
 func _update_text(new_text):
 	if text == null: return
 	text.text = new_text
-	
+
 #
 # Called when something ('body') enters one of the specified areas ('area').
 #
 func _on_entry(body, area):
 	print('in: ' + body.name + ' ' + area.name)
 	
-	# Player entered the Edge room? Only trigger first time!
-	if (body.name == 'JaneDough') and (area.name == 'EdgeDoorway'):
-		if firstEntryIntoEdge == true:
-			firstEntryIntoEdge = false
-			_play_track('CreepyTheme')
+	#
+	# Player-based actions
+	#
+	if body.name == 'JaneDough':
+		
+		# Player entered the Edge room? Only trigger first time!
+		if area.name == 'EdgeDoorway':
+			if firstEntryIntoEdge == true:
+				firstEntryIntoEdge = false
+				_play_track('CreepyTheme')
 
-	# Player entered test zone? Change text.
-	if (body.name == 'JaneDough') and (area.name == 'Test'):
-		_update_text('Inside!')
-	
+		# Player entered test zone? Change text.
+		if area.name == 'Test':
+			_update_text('Inside!')
+
 #
 # Called when something ('body') exits one of the specified areas ('area').
 #
 func _on_exit(body, area):
 	print('out: ' + body.name + ' ' + area.name)
+	
+	#
+	# Player-based actions
+	#
+	if body.name == 'JaneDough':
 
-	# Player exited test zone? Change text.
-	if (body.name == 'JaneDough') and (area.name == 'Test'):
-		_update_text('')
+		# Player exited test zone? Change text.
+		if area.name == 'Test':
+			_update_text('')
