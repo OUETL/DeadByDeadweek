@@ -1,3 +1,7 @@
+#
+# Main script handles music and responding to player entering specific zones.
+# Also handles responding to key presses in "special" areas.
+#
 extends Spatial
 
 # Expose these to the editor GUI for convenience
@@ -8,16 +12,18 @@ export var text_path = "UICanvasLayer/RichTextLabel"
 # Maps track name => AudioStreamPlayer object for that track.
 var track_name_to_audio_player = {}
 
-# Maps area name -> true (is inside area) or false (if outside)
+# Maps area name -> true (inside area) or false (outside area)
 var player_in_area = {}
 
-# Remember whether we've entered the Edge area before!
+# Used to swap music only the first time player enters the Edge
 var firstEntryIntoEdge = true
 
 # Status update text
 var text
 
+#
 # Standard Godot methods follow
+#
 
 func _ready():
 	# Try to find the text node
@@ -46,26 +52,28 @@ func _ready():
 			if !(area is Area): continue
 			player_in_area[area.name] = false
 			print('Hooking up entry/exit signals for area "%s"' % area.name)
-			area.connect('body_entered', self, '_on_entry', [area])
-			area.connect('body_exited', self, '_on_exit', [area])
+			area.connect('body_entered', self, '_on_area_entry', [area])
+			area.connect('body_exited', self, '_on_area_exit', [area])
 
 func _input(event):
 	if event is InputEventKey:
-		# Mimic keyup/keydown; echo == repeated signal when key held down
+		# Mimic keyup/keydown; echo == a repeated event when key held down
 		if event.is_echo() == false:
 			if event.pressed == true:
 				_key_down(event)
 			else:
 				_key_up(event)
 
+#
 # Additional methods follow
+#
 
 # Change the music track; also stops any track(s) that may already be playing
 func _play_track(track_name):
 	# Stop any existing music
 	for track_name in track_name_to_audio_player:
 		track_name_to_audio_player[track_name].stop()
-	
+
 	# Try to start new music track
 	if track_name in track_name_to_audio_player:
 		print('Changing music to "%s"' % track_name)
@@ -79,7 +87,7 @@ func _update_text(new_text):
 	text.text = new_text
 
 # Called when something ('body') enters one of the specified areas ('area').
-func _on_entry(body, area):
+func _on_area_entry(body, area):
 	print('in: ' + body.name + ' ' + area.name)
 
 	# Player-based actions
@@ -97,7 +105,7 @@ func _on_entry(body, area):
 			_update_text('Press "a" to activate!')
 
 # Called when something ('body') exits one of the specified areas ('area').
-func _on_exit(body, area):
+func _on_area_exit(body, area):
 	print('out: ' + body.name + ' ' + area.name)
 
 	# Player-based actions
