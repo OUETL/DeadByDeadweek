@@ -1,36 +1,52 @@
 extends KinematicBody
 
-var speed = 100
-var acceleration = 20
+export var speed = 100
+export var acceleration = 20
 
-onready var edgeRoom = $'../Navigation/NavigationMeshInstance/EdgeRoom'
-onready var edgeRoomArea = $'../Navigation/NavigationMeshInstance/EdgeRoom/Area'
+var movement_allowed: bool = true
 
-var direction = Vector3()
-var velocity = Vector3()
+#
+# Standard internal Godot methods
+#
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	edgeRoomArea.connect('body_entered', self, '_on_entered_music_change')
-
-func _on_entered_music_change(body):
-	print('On entered triggered from player!')
-	edgeRoom._trackChange()
+	# Hides mouse cursor
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	pass
 
 func _process(delta):
-	direction = Vector3()
 	
-	if Input.is_action_pressed("p2_up"):
-		direction -= transform.basis.z
-	elif Input.is_action_pressed("p2_down"):
-		direction += transform.basis.z
-	elif Input.is_action_pressed("p2_left"):
-		direction -= transform.basis.x
-	elif Input.is_action_pressed("p2_right"):
-		direction += transform.basis.x
-	
-	direction = direction.normalized()
-	velocity = direction * speed
-	velocity.linear_interpolate(velocity, acceleration*delta)
-	move_and_slide(velocity, Vector3.UP)
+	# Only process movement input if movement is enabled.
+	if movement_allowed:
+		var direction = Vector3()
+		
+		# Separate the up/down and left/right keypress handling as we can use
+		# e.g. up and left simultaneously when moving
+		
+		if Input.is_action_pressed("p2_up"):
+			direction -= transform.basis.z
+		elif Input.is_action_pressed("p2_down"):
+			direction += transform.basis.z
+		
+		if Input.is_action_pressed("p2_left"):
+			direction -= transform.basis.x
+		elif Input.is_action_pressed("p2_right"):
+			direction += transform.basis.x
+		
+		direction = direction.normalized()
+		
+		var velocity = direction * speed
+		velocity.linear_interpolate(velocity, acceleration*delta)
+		
+		move_and_slide(velocity, Vector3.UP)
 
+#
+# Provide additional functionality
+#
+
+func allow_movement(enable: bool):
+	movement_allowed = enable
+
+func trigger_death():
+	allow_movement(false)
+	# ... do whatever ...
