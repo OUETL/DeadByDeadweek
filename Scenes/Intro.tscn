@@ -31,9 +31,12 @@ __meta__ = {
 
 [node name="VideoPlayer" type="VideoPlayer" parent="ColorRect"]
 margin_right = 1028.0
-margin_bottom = 1028.0
+margin_bottom = 627.0
 stream = ExtResource( 3 )
 autoplay = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="8-BitArcade" type="TextEdit" parent="."]
 margin_left = 323.634

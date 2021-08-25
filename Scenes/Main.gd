@@ -21,6 +21,11 @@ var firstEntryIntoEdge = true
 # Status update text
 var text
 
+onready var lifeTimer = $p1lifeTimer
+onready var lifestatusSprite = $Control/p1LifeBar.texture_progress
+onready var lifestatusFrames = preload("res://Assets/Resources/lifeprogressanimation.tres")
+
+var currentLife = 23
 #
 # Standard Godot methods follow
 #
@@ -54,6 +59,17 @@ func _ready():
 			print('Hooking up entry/exit signals for area "%s"' % area.name)
 			area.connect('body_entered', self, 'on_area_entry', [area])
 			area.connect('body_exited', self, 'on_area_exit', [area])
+			
+	#Set frame for life bar
+	lifestatusSprite.set_current_frame(currentLife) 
+	#Start HP timer
+	lifeTimer.start()
+
+func _physics_process(delta):
+	#update health variable
+	currentLife = lifeTimer.get_time_left()
+	#set frame as currentLife int
+	lifestatusSprite.set_current_frame(currentLife)
 
 func _input(event):
 	if event is InputEventKey:
@@ -129,3 +145,7 @@ func key_down(event):
 
 func key_up(event):
 	pass
+
+
+func _on_Candy_body_shape_entered(body_id, body, body_shape, local_shape):
+	lifeTimer.start(+10)

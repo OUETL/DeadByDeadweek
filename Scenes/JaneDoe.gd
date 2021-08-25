@@ -5,13 +5,7 @@ export var acceleration = 20
 
 var movement_allowed: bool = true
 
-#
-# Standard internal Godot methods
-#
-
 func _ready():
-	# Hides mouse cursor
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pass
 
 func _process(delta):
