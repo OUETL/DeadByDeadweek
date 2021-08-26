@@ -8,7 +8,6 @@ extends Spatial
 export var music_path = "Music"
 export var zones_path = "ActiveZones"
 export var text_path = "UICanvasLayer/RichTextLabel"
-
 # Maps track name => AudioStreamPlayer object for that track.
 var track_name_to_audio_player = {}
 
@@ -21,10 +20,11 @@ var firstEntryIntoEdge = true
 # Status update text
 var text
 
+#lifebar/timer
 onready var lifeTimer = $p1lifeTimer
 onready var lifestatusSprite = $Control/p1LifeBar.texture_progress
 onready var lifestatusFrames = preload("res://Assets/Resources/lifeprogressanimation.tres")
-
+var currentTime = 24
 var currentLife = 23
 #
 # Standard Godot methods follow
@@ -62,12 +62,12 @@ func _ready():
 			
 	#Set frame for life bar
 	lifestatusSprite.set_current_frame(currentLife) 
-	#Start HP timer
-	lifeTimer.start()
 
 func _physics_process(delta):
+	#update currentTime
+	currentTime = lifeTimer.get_time_left()
 	#update health variable
-	currentLife = lifeTimer.get_time_left()
+	currentLife = currentTime
 	#set frame as currentLife int
 	lifestatusSprite.set_current_frame(currentLife)
 
@@ -115,10 +115,21 @@ func on_area_entry(body, area):
 			if firstEntryIntoEdge == true:
 				firstEntryIntoEdge = false
 				play_track('CreepyTheme')
+				#Start HP timer
+				lifeTimer.start()
 
 		# Player entered test zone? Change text.
 		if area.name == 'Test':
 			update_text('Press "a" to activate!')
+			
+		# Player entered test zone? Change text.
+		if area.name == 'Candy':
+			update_text('Candy Devoured! +10 HP!')
+			#update lifeTimer with the current time reading
+			currentTime += 10
+			lifeTimer.start(currentTime)
+			$ActiveZones/Candy.queue_free()
+			
 
 # Called when something ('body') exits one of the specified areas ('area').
 func on_area_exit(body, area):
@@ -145,7 +156,3 @@ func key_down(event):
 
 func key_up(event):
 	pass
-
-
-func _on_Candy_body_shape_entered(body_id, body, body_shape, local_shape):
-	lifeTimer.start(+10)

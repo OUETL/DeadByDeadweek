@@ -8,4 +8,4 @@ func _process(delta):
 		startGame()
 
 func startGame():
-	get_tree().change_scene("res://Scenes/Main.tscn")
+	get_tree().change_scene("res://Scenes/Story1.tscn")

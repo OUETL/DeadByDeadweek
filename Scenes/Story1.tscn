@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Sprites/Story/theBiz.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Fonts/NiceNightie.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/Story1.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 90
+font_data = ExtResource( 2 )
+
+[node name="Story1" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="ColorRect" parent="."]
+margin_right = 1022.0
+margin_bottom = 1014.0
+color = Color( 0.32549, 0.317647, 0.333333, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="BG"]
+margin_left = -85.5264
+margin_top = 235.197
+margin_right = 3773.47
+margin_bottom = 2232.2
+rect_scale = Vector2( 0.3, 0.3 )
+rect_pivot_offset = Vector2( 0.4, 0 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="topText" type="RichTextLabel" parent="BG"]
+margin_left = 8.90881
+margin_top = 76.6172
+margin_right = 1008.91
+margin_bottom = 176.617
+rect_clip_content = false
+custom_fonts/normal_font = SubResource( 1 )
+text = "Bizzell Memorial Library - 202X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bottomText" type="RichTextLabel" parent="BG"]
+margin_left = 17.8177
+margin_top = 842.79
+margin_right = 1017.82
+margin_bottom = 942.79
+rect_clip_content = false
+custom_fonts/normal_font = SubResource( 1 )
+text = "It's your first day working at the Edge Makerspace. "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 25.52, 25.56 )
+
+[node name="textChangeTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="textChangeTimer" to="." method="_on_textChangeTimer_timeout"]
