@@ -11,8 +11,11 @@ func _ready():
 	pass # Replace with function body
 	
 func _process(delta):
-	if Input.is_action_pressed("ui_accept"):
-		startGame()
+	if Input.is_action_just_pressed("ui_accept"):
+		if textCount == 2:
+			startGame()
+		elif textCount < 2:
+			_on_textChangeTimer_timeout()
 
 func startGame():
 	get_tree().change_scene("res://Scenes/Main.tscn")

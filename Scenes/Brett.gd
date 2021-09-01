@@ -4,6 +4,9 @@ extends KinematicBody
 export var speed = 90
 export var player_path = "../../JaneDough"
 export var navigation_path = "../../Navigation"
+onready var mainScene = get_node("/root/Scene/Main")
+
+onready var sprite = $AnimatedSprite
 
 var path = []
 var path_node_index = 0
@@ -40,6 +43,9 @@ func _physics_process(delta):
 			path_node_index += 1
 		else:
 			move_and_slide(direction.normalized() * speed, Vector3.UP)
+	#Attack player if close enough
+	if distance_to_player < 10:
+		_attack()
 	
 	# Calculate straight-line distance to player (not neccessarily the direction
 	# we're moving in, see note where distance_to_player variable is defined).
@@ -55,3 +61,11 @@ func set_destination(target_pos):
 
 func _on_Timer_timeout():
 	set_destination(player.global_transform.origin)
+	
+func _attack():
+	sprite.play("TazeAttack")
+
+
+func _on_AnimatedSprite_animation_finished():
+	if not sprite.get_animation() == "idleBrett" && "WalkEvilBrett":
+		sprite.play("WalkEvilBrett")

@@ -179,3 +179,4 @@ __meta__ = {
 wait_time = 23.0
 
 [connection signal="body_shape_entered" from="ActiveZones/Candy" to="." method="_on_Candy_body_shape_entered"]
+[connection signal="timeout" from="p1lifeTimer" to="." method="_on_p1lifeTimer_timeout"]

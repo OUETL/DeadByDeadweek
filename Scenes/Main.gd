@@ -16,16 +16,16 @@ var player_in_area = {}
 
 # Used to swap music only the first time player enters the Edge
 var firstEntryIntoEdge = true
+onready var brettSprite = $Brett/AnimatedSprite
 
 # Status update text
 var text
-
 #lifebar/timer
 onready var lifeTimer = $p1lifeTimer
 onready var lifestatusSprite = $Control/p1LifeBar.texture_progress
 onready var lifestatusFrames = preload("res://Assets/Resources/lifeprogressanimation.tres")
 var currentTime = 24
-var currentLife = 23
+export var currentLife = 23
 #
 # Standard Godot methods follow
 #
@@ -64,12 +64,7 @@ func _ready():
 	lifestatusSprite.set_current_frame(currentLife) 
 
 func _physics_process(delta):
-	#update currentTime
-	currentTime = lifeTimer.get_time_left()
-	#update health variable
-	currentLife = currentTime
-	#set frame as currentLife int
-	lifestatusSprite.set_current_frame(currentLife)
+	_updateHealth()
 
 func _input(event):
 	if event is InputEventKey:
@@ -83,7 +78,15 @@ func _input(event):
 #
 # Additional methods follow
 #
-
+#update health
+func _updateHealth():
+	#update currentTime
+	currentTime = lifeTimer.get_time_left()
+	#update health variable
+	currentLife = currentTime
+	#set frame as currentLife int
+	lifestatusSprite.set_current_frame(currentLife)
+	
 # Change the music track; also stops any track(s) that may already be playing
 func play_track(track_name):
 	# Stop any existing music
@@ -115,6 +118,7 @@ func on_area_entry(body, area):
 			if firstEntryIntoEdge == true:
 				firstEntryIntoEdge = false
 				play_track('CreepyTheme')
+				brettSprite.play("Transform")
 				#Start HP timer
 				lifeTimer.start()
 
@@ -128,6 +132,7 @@ func on_area_entry(body, area):
 			#update lifeTimer with the current time reading
 			currentTime += 10
 			lifeTimer.start(currentTime)
+			_updateHealth()
 			$ActiveZones/Candy.queue_free()
 			
 
@@ -156,3 +161,4 @@ func key_down(event):
 
 func key_up(event):
 	pass
+	
