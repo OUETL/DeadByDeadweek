@@ -11,5 +11,5 @@ dest_files=[ "res://.import/BrettAttackingNoise.mp3-b91e36b9b1eaafda4dff194b4525
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

@@ -1,84 +1,61 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://Assets/Sprites/3DPrinter/toolhead.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Sprites/3DPrinter/gantry-1.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Sprites/3DPrinter/printerFrame.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Sprites/3DPrinter/gantry-2.png" type="Texture" id=4]
-[ext_resource path="res://Scripts/3DPrinter.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Sprites/3DPrinters/Steve _)-4.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/3DPrinters/Steve _)-3.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/3DPrinters/The Tex-2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/3DPrinters/broken-1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/3DPrinters/Steve _)-1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/3DPrinters/Steve _)-2.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/3DPrinters/Slice T-4.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/3DPrinters/Slice T-3.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/3DPrinters/broken-2.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/3DPrinters/SliceT-1.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/3DPrinters/The Tex-1.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/3DPrinters/The Tex-4.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/3DPrinters/Slice T-2.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/3DPrinters/The Tex-3.png" type="Texture" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "default",
+"name": "Broken",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 8 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "SliceT",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 3 ), ExtResource( 14 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "The Tex",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "Steve",
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 140.693, 1544.02 )
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 2.18685, 1.60188, 4.19929 )
 
-[sub_resource type="SpriteFrames" id=3]
-animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
+[sub_resource type="CubeMesh" id=3]
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 1064.54, 69.2517 )
+[node name="3DPrinter" type="Area"]
 
-[sub_resource type="SpriteFrames" id=5]
-animations = [ {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 276.304, 323.523 )
-
-[node name="3DPrinter" type="Node2D"]
-position = Vector2( 529.802, 538.782 )
-scale = Vector2( 0.24, 0.24 )
-script = ExtResource( 5 )
-
-[node name="printerFrame" type="StaticBody2D" parent="."]
-
-[node name="frameSprite" type="AnimatedSprite" parent="printerFrame"]
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
 frames = SubResource( 1 )
-playing = true
+animation = "The Tex"
 
-[node name="leftCollisionShape2D" type="CollisionShape2D" parent="printerFrame"]
-position = Vector2( 1729.04, 339.028 )
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 4.8599, 0, 0, 0, 3.1968, 0, 0, 0, 1.52024, 0, 0, 0 )
 shape = SubResource( 2 )
 
-[node name="rightCollisionShape2D2" type="CollisionShape2D" parent="printerFrame"]
-position = Vector2( -1686.67, 347.504 )
-shape = SubResource( 2 )
-
-[node name="gantry" type="KinematicBody2D" parent="."]
-
-[node name="gantrySprite" type="AnimatedSprite" parent="gantry"]
-frames = SubResource( 3 )
-frame = 1
-
-[node name="bottomCollisionShape2D" type="CollisionShape2D" parent="gantry"]
-position = Vector2( -101.708, -364.455 )
-shape = SubResource( 4 )
-disabled = true
-
-[node name="topCollisionShape2D2" type="CollisionShape2D" parent="gantry"]
-position = Vector2( -144.087, -720.435 )
-shape = SubResource( 4 )
-disabled = true
-
-[node name="toolhead" type="KinematicBody2D" parent="gantry"]
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="gantry/toolhead"]
-frames = SubResource( 5 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="gantry/toolhead"]
-position = Vector2( -966.23, -432.261 )
-shape = SubResource( 6 )
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 2.93565, 0, 0, 0, 1, 0, 0, 0, 2.93565, -0.135838, 0, -0.0306149 )
+visible = false
+mesh = SubResource( 3 )
+material/0 = null

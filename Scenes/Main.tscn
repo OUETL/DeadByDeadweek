@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/Sprites/Pickups/candy2.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Music/Chill Theme.mp3" type="AudioStream" id=2]
@@ -11,6 +11,10 @@
 [ext_resource path="res://Assets/Resources/lifeprogressanimation.tres" type="Texture" id=9]
 [ext_resource path="res://Assets/Fonts/NiceNightie.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://Assets/SFX/Quak-Quak.mp3" type="AudioStream" id=11]
+[ext_resource path="res://Assets/Sprites/3DPrinters/Slice T-4.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/3DPrinters/Slice T-3.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/3DPrinters/SliceT-1.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/3DPrinters/Slice T-2.png" type="Texture" id=15]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -22,6 +26,14 @@ emission = Color( 1, 0, 0.929412, 1 )
 emission_energy = 0.02
 emission_operator = 0
 emission_on_uv2 = false
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 15 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "default",
+"speed": 0.2
+} ]
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
@@ -49,7 +61,6 @@ fog_depth_enabled = false
 fog_transmit_enabled = true
 
 [sub_resource type="DynamicFont" id=7]
-size = 24
 font_data = ExtResource( 10 )
 
 [node name="Main" type="Spatial"]
@@ -73,15 +84,21 @@ transform = Transform( 20, 0, 0, 0, 20, 0, 0, 0, 5, -33, 20, 140 )
 [node name="CollisionShape" type="CollisionShape" parent="ActiveZones/EdgeDoorway"]
 shape = SubResource( 1 )
 
-[node name="Test" type="Area" parent="ActiveZones"]
-transform = Transform( 20, 0, 0, 0, 20, 0, 0, 0, 20, 70, 20, -50 )
+[node name="3DPrinter" type="Area" parent="ActiveZones"]
+transform = Transform( 20, 0, 0, 0, 20, 0, 0, 0, 20, 88.2086, 20, -85.9702 )
 
-[node name="CollisionShape" type="CollisionShape" parent="ActiveZones/Test"]
+[node name="CollisionShape" type="CollisionShape" parent="ActiveZones/3DPrinter"]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="ActiveZones/Test"]
+[node name="MeshInstance" type="MeshInstance" parent="ActiveZones/3DPrinter"]
+visible = false
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="ActiveZones/3DPrinter"]
+transform = Transform( 0.1, 0, 0, 0, -4.37114e-09, 0.1, 0, -0.1, -4.37114e-09, 0.0124071, 8.34465e-07, 0.0152371 )
+frames = SubResource( 8 )
+playing = true
 
 [node name="Candy" type="Area" parent="ActiveZones"]
 transform = Transform( 20, 0, 0, 0, 20, 0, 0, 0, 20, 70, 20, 48.7514 )
@@ -166,12 +183,12 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/p1LifeBar"]
-margin_left = -2.34933
-margin_top = -6.41466
-margin_right = 97.6507
-margin_bottom = 43.5853
+margin_left = -2.0
+margin_top = -6.0
+margin_right = 103.0
+margin_bottom = 35.0
 custom_fonts/normal_font = SubResource( 7 )
-text = "Player One - "
+text = "Jane Dough"
 __meta__ = {
 "_edit_use_anchors_": false
 }

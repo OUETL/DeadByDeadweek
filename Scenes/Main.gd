@@ -138,7 +138,9 @@ func on_area_entry(body, area):
 			lifeTimer.start(currentTime)
 			_updateHealth()
 			$ActiveZones/Candy.queue_free()
-			
+		
+		if area.name == '3DPrinter':
+			update_text('3D Printer in range')
 
 # Called when something ('body') exits one of the specified areas ('area').
 func on_area_exit(body, area):
@@ -160,8 +162,12 @@ func key_down(event):
 	#	print('Triggered!')
 	
 	# Check if specific action key pressed in a region.
-	if (Input.is_action_pressed("ui_accept")) and (player_in_area['Test'] == true):
+	if (Input.is_action_pressed("ui_accept")) and (player_in_area['3DPrinter'] == true):
 		print('Triggered!')
+		miniGame()
+		
+func miniGame():
+	get_tree().change_scene("res://Scenes/WiresGame.tscn")
 
 func key_up(event):
 	pass

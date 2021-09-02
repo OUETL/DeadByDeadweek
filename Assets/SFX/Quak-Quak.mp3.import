@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Quak-Quak.mp3-976ba7c021d125fdff9603f2dc4e6dba.mp3st
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
