@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Shut down.mp3-e23be6ca8fcac3289f9cf69deeb30847.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/Shut down.mp3"
+dest_files=[ "res://.import/Shut down.mp3-e23be6ca8fcac3289f9cf69deeb30847.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

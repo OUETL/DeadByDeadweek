@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Quak-Quak.mp3-976ba7c021d125fdff9603f2dc4e6dba.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/Quak-Quak.mp3"
+dest_files=[ "res://.import/Quak-Quak.mp3-976ba7c021d125fdff9603f2dc4e6dba.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

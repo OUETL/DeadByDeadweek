@@ -20,6 +20,8 @@ onready var brettSprite = $Brett/AnimatedSprite
 
 # Status update text
 var text
+#Sound effects
+onready var eatSound = $candySFX
 #lifebar/timer
 onready var lifeTimer = $p1lifeTimer
 onready var lifestatusSprite = $Control/p1LifeBar.texture_progress
@@ -74,10 +76,10 @@ func _input(event):
 				key_down(event)
 			else:
 				key_up(event)
-
 #
 # Additional methods follow
 #
+
 #update health
 func _updateHealth():
 	#update currentTime
@@ -129,6 +131,8 @@ func on_area_entry(body, area):
 		# Player entered test zone? Change text.
 		if area.name == 'Candy':
 			update_text('Candy Devoured! +10 HP!')
+			#play sound starting at .78
+			eatSound.play(0.78)
 			#update lifeTimer with the current time reading
 			currentTime += 10
 			lifeTimer.start(currentTime)

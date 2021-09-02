@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gantry-2.png-121f0e55203012bca9d60950d3b3f50a.stex"
+path="res://.import/Crawling-2.png-b4268360f6d5296aa39c97b4b7150d36.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/3DPrinter/gantry-2.png"
-dest_files=[ "res://.import/gantry-2.png-121f0e55203012bca9d60950d3b3f50a.stex" ]
+source_file="res://Assets/Sprites/JaneDough/Crawling-2.png"
+dest_files=[ "res://.import/Crawling-2.png-b4268360f6d5296aa39c97b4b7150d36.stex" ]
 
 [params]
 

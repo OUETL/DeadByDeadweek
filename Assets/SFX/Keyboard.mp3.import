@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Keyboard.mp3-773f1daa708eeb1bbdc3eaf73695a1d6.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/Keyboard.mp3"
+dest_files=[ "res://.import/Keyboard.mp3-773f1daa708eeb1bbdc3eaf73695a1d6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

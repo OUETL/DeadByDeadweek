@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/toolhead.png-c68d11632b9a4243c73d9eb5f09136cb.stex"
+path="res://.import/Steve _)-3.png-110b890719f1ed5dd03c67d9cf1f743c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/3DPrinter/toolhead.png"
-dest_files=[ "res://.import/toolhead.png-c68d11632b9a4243c73d9eb5f09136cb.stex" ]
+source_file="res://Assets/Sprites/3DPrinters/Steve _)-3.png"
+dest_files=[ "res://.import/Steve _)-3.png-110b890719f1ed5dd03c67d9cf1f743c.stex" ]
 
 [params]
 

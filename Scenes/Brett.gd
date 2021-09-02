@@ -8,6 +8,9 @@ onready var mainScene = get_node("/root/Scene/Main")
 
 onready var sprite = $AnimatedSprite
 
+onready var attackSound = $attackSFX
+onready var walkSound = $walkingSFX
+
 var path = []
 var path_node_index = 0
 
@@ -43,6 +46,7 @@ func _physics_process(delta):
 			path_node_index += 1
 		else:
 			move_and_slide(direction.normalized() * speed, Vector3.UP)
+			walkSound.play()
 	#Attack player if close enough
 	if distance_to_player < 10:
 		_attack()
@@ -64,6 +68,7 @@ func _on_Timer_timeout():
 	
 func _attack():
 	sprite.play("TazeAttack")
+	
 
 func _on_AnimatedSprite_animation_finished():
 	if not sprite.get_animation() == "idleBrett" && "WalkEvilBrett":
@@ -72,3 +77,4 @@ func _on_AnimatedSprite_animation_finished():
 
 func _on_transformTimer_timeout():
 	sprite.play("Transform")
+	attackSound.play()
