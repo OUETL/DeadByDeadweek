@@ -65,7 +65,10 @@ func _on_Timer_timeout():
 func _attack():
 	sprite.play("TazeAttack")
 
-
 func _on_AnimatedSprite_animation_finished():
 	if not sprite.get_animation() == "idleBrett" && "WalkEvilBrett":
+		$transformTimer.start()
 		sprite.play("WalkEvilBrett")
+
+func _on_transformTimer_timeout():
+	sprite.play("Transform")

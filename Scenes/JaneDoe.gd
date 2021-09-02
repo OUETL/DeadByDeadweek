@@ -17,14 +17,13 @@ func _process(delta):
 		# Separate the up/down and left/right keypress handling as we can use
 		# e.g. up and left simultaneously when moving
 		
-		if Input.is_action_pressed("p2_up"):
+		if Input.is_action_pressed("ui_up"):
 			direction -= transform.basis.z
-		elif Input.is_action_pressed("p2_down"):
+		elif Input.is_action_pressed("ui_down"):
 			direction += transform.basis.z
-		
-		if Input.is_action_pressed("p2_left"):
+		if Input.is_action_pressed("ui_left"):
 			direction -= transform.basis.x
-		elif Input.is_action_pressed("p2_right"):
+		elif Input.is_action_pressed("ui_right"):
 			direction += transform.basis.x
 		
 		direction = direction.normalized()
