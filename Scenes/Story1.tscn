@@ -37,10 +37,10 @@ __meta__ = {
 }
 
 [node name="topText" type="RichTextLabel" parent="BG"]
-margin_left = 8.90881
-margin_top = 76.6172
-margin_right = 1008.91
-margin_bottom = 176.617
+margin_left = 49.0
+margin_top = 70.0
+margin_right = 968.0
+margin_bottom = 170.0
 rect_clip_content = false
 custom_fonts/normal_font = SubResource( 1 )
 text = "Bizzell Memorial Library - 202X"
@@ -49,10 +49,10 @@ __meta__ = {
 }
 
 [node name="bottomText" type="RichTextLabel" parent="BG"]
-margin_left = 17.8177
-margin_top = 842.79
-margin_right = 1017.82
-margin_bottom = 942.79
+margin_left = 18.0
+margin_top = 843.0
+margin_right = 1018.0
+margin_bottom = 1026.0
 rect_clip_content = false
 custom_fonts/normal_font = SubResource( 1 )
 text = "It's your first day working at the Edge Makerspace. "
