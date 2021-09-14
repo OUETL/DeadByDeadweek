@@ -168,7 +168,12 @@ func key_down(event):
 		
 func miniGame():
 	get_tree().change_scene("res://Scenes/WiresGame.tscn")
+	
+func gameOver():
+	get_tree().change_scene("res://Scenes/Credits.tscn")
 
 func key_up(event):
 	pass
 	
+func _on_p1lifeTimer_timeout():
+	gameOver()

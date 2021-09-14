@@ -10,7 +10,7 @@
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 35
+size = 34
 font_data = ExtResource( 2 )
 
 [node name="Intro" type="Control"]
@@ -38,29 +38,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="8-BitArcade" type="TextEdit" parent="."]
-margin_left = 323.634
-margin_top = 765.635
-margin_right = 523.634
-margin_bottom = 785.635
+[node name="8-BitArcade" type="RichTextLabel" parent="."]
+margin_left = 324.0
+margin_top = 766.0
+margin_right = 485.0
+margin_bottom = 786.0
 rect_scale = Vector2( 3.43166, 2.71363 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 1 )
 text = "Press Enter"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NiceNightie" type="TextEdit" parent="."]
+[node name="NiceNightie" type="RichTextLabel" parent="."]
 margin_left = 61.4305
 margin_top = 50.9424
 margin_right = 311.431
 margin_bottom = 100.942
 rect_scale = Vector2( 3.43166, 2.71363 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 2 )
 text = "Dead by Deadweek"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="IntroMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
